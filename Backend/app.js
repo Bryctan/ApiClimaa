@@ -9,6 +9,15 @@ var app = express()
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+    res.set({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+    });
+    next();
+});
+
 app.listen(10101, function () {
     console.log('Example app listening on port 10101!');
 });
